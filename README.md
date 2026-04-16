@@ -1,35 +1,41 @@
-# product-service
+# Best Buy – Product Service
 
-This is a Rust app that simulates a product catalog. It is meant to be used in conjunction with the store-front and store-admin apps.
+This is the Product Service for the **Best Buy Cloud-Native Final Project**.
 
-This app is a simple REST API that allows you to get a list of products, get a single product, update a product, and add a product.
+The Product Service is a backend REST API responsible for managing the product catalog.
+It provides endpoints to retrieve products, retrieve a single product, update products,
+and add new products.
 
-Products are loaded into memory and not persisted. So if the app is restarted, the products will be reloaded.
+The service is implemented in **Rust** and is part of a microservices-based architecture
+deployed on **Azure Kubernetes Service (AKS)**.
 
-## Running the app locally
+This project is adapted from the **Algonquin Pet Store (On Steroids)** reference architecture
+and rebranded for the Best Buy final project in CST8915.
 
-The app does not rely on any other services, so you can run it locally without any other services running.
+---
+
+## Architecture Context
+
+The Product Service is consumed by:
+- **Store Front** – to display products to customers
+- **Store Admin** – to manage product data
+
+In the current implementation, product data is stored in memory.
+When the service restarts, the product catalog is reloaded.
+
+---
+
+## Running the Service Locally (Optional)
+
+> ⚠️ Local execution is for development and testing only.  
+> In production, this service runs inside Kubernetes (AKS).
 
 ### Prerequisites
+- Rust toolchain
 
-- [Rust](https://www.rust-lang.org/tools/install)
+### Local Development
 
-### Running the app
-
-To run the app, clone the repo, open a terminal, and navigate to the `product-service` directory. Then run the following command:
+To run the service locally:
 
 ```bash
 cargo run
-```
-
-When the app is running, you should see output similar to the following:
-
-```text
-    Finished dev [unoptimized + debuginfo] target(s) in 0.16s
-     Running `target/debug/product-service`
-Listening on http://0.0.0.0:3002
-[2023-06-28T02:44:47Z INFO  actix_server::builder] starting 16 workers
-[2023-06-28T02:44:47Z INFO  actix_server::server] Actix runtime found; starting in Actix runtime
-```
-
-Using the [`test-product-service.http`](./test-product-service.http) file in the root of the repo, you can test the API. However, you will need to use VS Code and have the [REST Client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) extension installed.
